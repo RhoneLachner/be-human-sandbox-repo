@@ -1,5 +1,6 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
+const { start } = require('repl');
 const vscode = require('vscode');
 
 // this method is called when your extension is activated
@@ -30,6 +31,12 @@ function activate(context) {
 
 		// Display a message box to the user
 		vscode.window.showInformationMessage(`YO YO YO YOUR TIME IS ${localTime} YO YO!`);
+		setInterval(async() => {
+			const endTime = new Date();
+			const timeDifference = (endTime - startTime) / 1000;
+			vscode.window.showInformationMessage(`YOUR TIME ONLINE IS ${timeDifference}!`);
+		}, 3000
+		);
 	});
 
 	context.subscriptions.push(disposable);
