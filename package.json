@@ -10,16 +10,25 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:be-human-sandbox.helloWorld"
+    "onCommand:be-human-sandbox.helloWorld",
+    "*"
   ],
   "main": "./extension.js",
   "contributes": {
     "commands": [
       {
         "command": "be-human-sandbox.helloWorld",
-        "title": "Hello World"
+        "title": "beHuman"
       }
-    ]
+    ],
+    "keybindings": [
+      {
+        "command": "be-human-sandbox.helloWorld",
+        "key": "ctrl+f1",
+        "mac": "cmd+i",
+        "when": "editorTextFocus"
+    }
+  ]
   },
   "scripts": {
     "lint": "eslint .",
