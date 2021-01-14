@@ -31,12 +31,22 @@ function activate(context) {
 
 		// Display a message box to the user
 		vscode.window.showInformationMessage(`YO YO YO YOUR TIME IS ${localTime} YO YO!`);
+
 		setInterval(async() => {
 			const endTime = new Date();
-			const timeDifference = (endTime - startTime) / 1000;
-			vscode.window.showInformationMessage(`YOUR TIME ONLINE IS ${timeDifference}!`);
-		}, 3000
-		);
+			const timeMinutes = Math.round((endTime - startTime ) / 1000 / 60);
+			const timeSeconds = Math.round((endTime - startTime ) / 1000);
+			vscode.window.showInformationMessage(`YOUR TIME ONLINE IS ${timeMinutes} MINUTES!`);
+
+			const reply = await vscode.window.showInformationMessage(`YOUR TIME ONLINE IS ${timeSeconds} SECONDS!\n`, 'Move your body here', 'LINK', 'bye');
+
+			if (reply === 'Move your body here') {
+				vscode.window.showInformationMessage('Great! Do this ........'), { modal: false};
+			} else if (reply === 'LINK') {
+				vscode.env.openExternal(vscode.Uri.parse('https://www.alchemycodelab.com/'));
+			} 
+			return;
+		}, 3000);
 	});
 
 	context.subscriptions.push(disposable);
